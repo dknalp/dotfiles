@@ -1,18 +1,21 @@
 # parsherr/dotfiles
 
-My personal Hyprland setup on Fedora 43.
+> Hyprland + Catppuccin Mocha on Fedora 43
 
-## Setup
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Hyprland](https://img.shields.io/badge/WM-Hyprland_0.57-blue)
+![Distro](https://img.shields.io/badge/distro-Fedora_43-blue)
+![Theme](https://img.shields.io/badge/theme-Catppuccin_Mocha-pink)
 
-Based on [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprland) with heavy customization.
+---
 
 ## Stack
 
 | Component | App |
 |---|---|
-| WM | Hyprland 0.57 |
-| Bar | Waybar (minimal Catppuccin Mocha) |
-| Launcher | Rofi (Wayland) |
+| Window Manager | Hyprland 0.57 (Lua config) |
+| Bar | Waybar — minimal Catppuccin Mocha |
+| App Launcher | Rofi (Wayland) |
 | Terminal | Kitty |
 | Browser | Brave (Flatpak) |
 | File Manager | Thunar |
@@ -21,10 +24,13 @@ Based on [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprlan
 | Wallpaper | swww |
 | Night Light | hyprsunset |
 | Notifications | swaync |
-| Login | SDDM (simple_sddm_2 theme) |
-| Theme | Catppuccin Mocha |
+| Login Screen | SDDM (simple_sddm_2) |
+| Color Theme | Catppuccin Mocha |
 | Icons | Papirus-Dark |
 | Font | JetBrains Mono Nerd Font |
+| Color Generator | wallust (harddark16 + lchmixed) |
+
+---
 
 ## Keybinds
 
@@ -32,7 +38,7 @@ Based on [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprlan
 |---|---|
 | `Super + Enter` | Terminal (kitty) |
 | `Super + Q` | Close window |
-| `Super + D / Space` | App launcher |
+| `Super + D / Space` | App launcher (rofi) |
 | `Super + W` | Brave browser |
 | `Super + C` | VS Code |
 | `Super + E` | File manager (Thunar) |
@@ -40,23 +46,60 @@ Based on [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprlan
 | `Super + V` | Clipboard history |
 | `Super + .` | Keybind cheat sheet |
 | `Super + 1-6` | Switch workspace |
-| `Super+Shift+1-6` | Move window to workspace |
+| `Super + Shift + 1-6` | Move window to workspace |
 | `Super + arrows` | Focus window |
-| `Super+Shift+Up/Down` | Brightness ±5% |
-| `Super+Shift+Left/Right` | Volume ±5% |
+| `Super + Shift + Up/Down` | Brightness ±5% |
+| `Super + Shift + Left/Right` | Volume ±5% |
 | `Print` | Screenshot (select area → clipboard) |
+
+---
+
+## Install
+
+> **Requires:** Fedora 43 + Hyprland 0.57 already installed (via [JaKooLit's installer](https://github.com/JaKooLit/Fedora-Hyprland))
+
+```bash
+git clone https://github.com/parsherr/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install.sh
+```
+
+The installer:
+- Backs up your existing `~/.config/{hypr,waybar,rofi,kitty,wallust}` to a timestamped folder
+- Copies configs to the correct locations
+- Optionally installs the SDDM theme (requires sudo)
+
+---
 
 ## Structure
 
 ```
 dotfiles/
-├── hypr/          # Hyprland config (hyprland.lua, UserConfigs, UserScripts)
-├── waybar/        # Bar config and minimal Catppuccin CSS
-├── rofi/          # App launcher + wallpaper picker + cheatsheet themes
-├── kitty/         # Terminal config
-└── sddm/          # Login screen theme config
+├── .config/
+│   ├── hypr/          # hyprland.lua, UserConfigs, UserScripts, scripts
+│   ├── waybar/        # config + minimal-catppuccin.css
+│   ├── rofi/          # app launcher, wallpaper picker, cheatsheet themes
+│   ├── kitty/         # terminal config
+│   └── wallust/       # color generation config
+├── sddm/              # login screen theme.conf
+├── assets/            # screenshots
+├── install.sh         # installer script
+├── good-ideas.md      # notes from analyzing pro dotfiles repos
+└── hyprland-setup-notes.md  # full setup journal (660+ lines)
 ```
 
-## Notes
+---
 
-Full setup notes at `~/Desktop/hyprland-setup-notes.md`.
+## Credits
+
+- [JaKooLit/Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprland) — base installer and dotfiles
+- [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland) — inspiration
+- [Catppuccin](https://github.com/catppuccin/catppuccin) — color scheme
+- [Hyprland](https://hyprland.org) — window manager
+
+---
+
+## License
+
+MIT © parsherr
+</content>
