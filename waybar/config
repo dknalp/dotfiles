@@ -1,0 +1,101 @@
+{
+"layer": "top",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"height": 32,
+"spacing": 4,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 6,
+"margin-left": 10,
+"margin-right": 10,
+
+"modules-left": [
+	"hyprland/workspaces"
+],
+
+"modules-center": [
+	"clock"
+],
+
+"modules-right": [
+	"custom/nightlight",
+	"network",
+	"pulseaudio",
+	"battery",
+	"tray"
+],
+
+"hyprland/workspaces": {
+	"format": "{id}",
+	"on-click": "activate",
+	"sort-by-number": true,
+	"all-outputs": false
+},
+
+"clock": {
+	"format": "  {:%H:%M}",
+	"format-alt": "  {:%a %d %b}",
+	"tooltip-format": "<tt>{calendar}</tt>",
+	"calendar": {
+		"mode": "month",
+		"format": {
+			"today": "<span color='#b4befe'><b>{}</b></span>"
+		}
+	}
+},
+
+"battery": {
+	"full-at": 100,
+	"states": {
+		"good": 95,
+		"warning": 30,
+		"critical": 15
+	},
+	"format": "{icon} {capacity}%",
+	"format-charging": " {capacity}%",
+	"format-plugged": "󱘖 {capacity}%",
+	"format-full": " Full",
+	"format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+	"tooltip-format": "{timeTo} — {capacity}%"
+},
+
+"network": {
+	"format-wifi": " {essid}",
+	"format-ethernet": "󰌘 {ifname}",
+	"format-disconnected": "󰌙",
+	"tooltip-format-wifi": "{essid}  {signalStrength}%",
+	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-disconnected": "Disconnected"
+},
+
+"pulseaudio": {
+	"format": "{icon} {volume}%",
+	"format-muted": "󰖁",
+	"format-icons": {
+		"headphone": "",
+		"default": ["󰕿","󰖀","󰕾"]
+	},
+	"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+	"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+	"tooltip": false
+},
+
+"tray": {
+	"icon-size": 14,
+	"spacing": 6
+},
+
+"custom/nightlight": {
+	"return-type": "json",
+	"exec": "$HOME/.config/hypr/scripts/Hyprsunset.sh status",
+	"interval": 3,
+	"format": "{text}",
+	"on-click": "$HOME/.config/hypr/scripts/Hyprsunset.sh toggle",
+	"tooltip": true,
+	"tooltip-format": "Night light toggle",
+	"escape": false
+}
+}
