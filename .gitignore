@@ -9,11 +9,13 @@ secrets/
 wallpapers/
 *.jpg
 *.jpeg
-*.png
 *.gif
 *.webp
 *.mp4
 *.mkv
+
+# Allow screenshots in assets/
+!assets/*.png
 
 # Cache and runtime files
 *.cache

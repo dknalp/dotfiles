@@ -1,4 +1,4 @@
-# parsherr/dotfiles
+# dknalp/dotfiles
 
 > Hyprland + Catppuccin Mocha on Fedora 43
 
@@ -6,6 +6,8 @@
 ![Hyprland](https://img.shields.io/badge/WM-Hyprland_0.57-blue)
 ![Distro](https://img.shields.io/badge/distro-Fedora_43-blue)
 ![Theme](https://img.shields.io/badge/theme-Catppuccin_Mocha-pink)
+
+![screenshot](assets/screenshot.png)
 
 ---
 
@@ -101,5 +103,5 @@ dotfiles/
 
 ## License
 
-MIT © parsherr
+MIT © dknalp
 </content>
