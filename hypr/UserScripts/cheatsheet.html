@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Keybinds</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  h2 {
+    color: #b4befe;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  h2:first-of-type { margin-top: 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+  }
+  .desc {
+    color: #a6adc8;
+    white-space: nowrap;
+  }
+  .keys {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+    min-width: 160px;
+  }
+  kbd {
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 5px;
+    padding: 1px 7px;
+    font-size: 12px;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  kbd.super {
+    background: #45475a;
+    color: #b4befe;
+    border-color: #b4befe;
+    font-weight: bold;
+  }
+  .sep { color: #585b70; font-size: 11px; }
+  hr {
+    border: none;
+    border-top: 1px solid #313244;
+    margin: 14px 0 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>🚀 Apps</h2>
+<div class="grid">
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Enter</kbd></div><div class="desc">Terminal (kitty)</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>W</kbd></div><div class="desc">Brave browser</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>D</kbd></div><div class="desc">App launcher</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>C</kbd></div><div class="desc">VS Code</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Space</kbd></div><div class="desc">App launcher</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>E</kbd></div><div class="desc">File manager (Thunar)</div></div>
+</div>
+
+<hr>
+<h2>🪟 Windows</h2>
+<div class="grid">
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Q</kbd></div><div class="desc">Close window</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd></div><div class="desc">Focus window</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>V</kbd></div><div class="desc">Float toggle</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>M</kbd></div><div class="desc">Exit Hyprland</div></div>
+</div>
+
+<hr>
+<h2>🖥️ Workspaces</h2>
+<div class="grid">
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>1</kbd>–<kbd>6</kbd></div><div class="desc">Switch workspace</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Shift</kbd><span class="sep">+</span><kbd>1</kbd>–<kbd>6</kbd></div><div class="desc">Move window to workspace</div></div>
+</div>
+
+<hr>
+<h2>🎛️ System</h2>
+<div class="grid">
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Shift</kbd><span class="sep">+</span><kbd>↑↓</kbd></div><div class="desc">Brightness ±5%</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>Shift</kbd><span class="sep">+</span><kbd>←→</kbd></div><div class="desc">Volume ±5%</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>V</kbd></div><div class="desc">Clipboard history</div></div>
+  <div class="row"><div class="keys"><kbd>Print</kbd></div><div class="desc">Screenshot (select area)</div></div>
+</div>
+
+<hr>
+<h2>🎨 Customization</h2>
+<div class="grid">
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>F</kbd></div><div class="desc">Wallpaper picker</div></div>
+  <div class="row"><div class="keys"><kbd class="super">Super</kbd><span class="sep">+</span><kbd>.</kbd></div><div class="desc">This cheat sheet</div></div>
+</div>
+
+</body>
+</html>
