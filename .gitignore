@@ -1,0 +1,34 @@
+# Secrets and private files
+*.key
+*.pem
+*.env
+.env*
+secrets/
+
+# Wallpapers (too large for git)
+wallpapers/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.mp4
+*.mkv
+
+# Cache and runtime files
+*.cache
+*.log
+__pycache__/
+.cache/
+
+# SDDM backgrounds (large)
+Backgrounds/
+
+# Backup dirs created by JaKooLit installer
+*-backup-*/
+
+# Wallust generated (auto-generated from wallpaper)
+wallust/
+
+# Hyprland runtime
+hyprland.lock
