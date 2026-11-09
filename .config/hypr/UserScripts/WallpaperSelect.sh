@@ -71,30 +71,48 @@ RANDOM_PIC_NAME=". random"
 # Rofi command
 rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override"
 
+# Thumbnail cache directory
+THUMB_DIR="$HOME/.cache/wallpaper_thumbs"
+mkdir -p "$THUMB_DIR"
+
+# Generate a small cached thumbnail for fast rofi loading
+get_thumb() {
+  local pic_path="$1"
+  local pic_name
+  pic_name=$(basename "$pic_path")
+  local thumb="$THUMB_DIR/${pic_name}.thumb.png"
+  if [[ ! -f "$thumb" ]]; then
+    magick "$pic_path[0]" -resize 400x225^ -gravity center -extent 400x225 "$thumb" 2>/dev/null || cp "$pic_path" "$thumb"
+  fi
+  echo "$thumb"
+}
+
 # Sorting Wallpapers
 menu() {
   IFS=$'\n' sorted_options=($(sort <<<"${PICS[*]}"))
+
+  # Add New entry — opens wallpapers folder in Thunar
+  printf "%s\x00icon\x1f%s\n" "  Add New Wallpaper..." "folder"
 
   printf "%s\x00icon\x1f%s\n" "$RANDOM_PIC_NAME" "$RANDOM_PIC"
 
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
     if [[ "$pic_name" =~ \.gif$ ]]; then
-      cache_gif_image="$HOME/.cache/gif_preview/${pic_name}.png"
+      cache_gif_image="$THUMB_DIR/${pic_name}.thumb.png"
       if [[ ! -f "$cache_gif_image" ]]; then
-        mkdir -p "$HOME/.cache/gif_preview"
-        magick "$pic_path[0]" -resize 1920x1080 "$cache_gif_image"
+        magick "$pic_path[0]" -resize 400x225^ -gravity center -extent 400x225 "$cache_gif_image" 2>/dev/null
       fi
       printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_gif_image"
     elif [[ "$pic_name" =~ \.(mp4|mkv|mov|webm|MP4|MKV|MOV|WEBM)$ ]]; then
-      cache_preview_image="$HOME/.cache/video_preview/${pic_name}.png"
+      cache_preview_image="$THUMB_DIR/${pic_name}.thumb.png"
       if [[ ! -f "$cache_preview_image" ]]; then
-        mkdir -p "$HOME/.cache/video_preview"
-        ffmpeg -v error -y -i "$pic_path" -ss 00:00:01.000 -vframes 1 "$cache_preview_image"
+        ffmpegthumbnailer -i "$pic_path" -o "$cache_preview_image" -s 400 -q 8 2>/dev/null
       fi
       printf "%s\x00icon\x1f%s\n" "$pic_name" "$cache_preview_image"
     else
-      printf "%s\x00icon\x1f%s\n" "$pic_name" "$pic_path"
+      thumb=$(get_thumb "$pic_path")
+      printf "%s\x00icon\x1f%s\n" "$pic_name" "$thumb"
     fi
   done
 }
@@ -165,6 +183,12 @@ main() {
   choice=$(menu | $rofi_command)
   choice=$(echo "$choice" | xargs)
   RANDOM_PIC_NAME=$(echo "$RANDOM_PIC_NAME" | xargs)
+
+  # Handle "Add New" entry — open wallpapers folder in Thunar
+  if [[ "$choice" == "  Add New Wallpaper..." ]]; then
+    thunar "$wallDIR" &
+    exit 0
+  fi
 
   if [[ -z "$choice" ]]; then
     echo "No choice selected. Exiting."

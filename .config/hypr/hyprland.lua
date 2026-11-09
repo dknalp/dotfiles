@@ -299,7 +299,7 @@ hl.bind(mainMod .. " + period", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/h
 hl.bind('Print', hl.dsp.exec_cmd(os.getenv('HOME') .. '/.config/hypr/scripts/screenshot.sh'))
 
 -- Clipboard history: Super+V opens rofi cliphist picker
-hl.bind(mainMod .. ' + V', hl.dsp.exec_cmd('bash -c "cliphist list | rofi -dmenu -p Clipboard | cliphist decode | wl-copy"'))
+hl.bind(mainMod .. ' + V', hl.dsp.exec_cmd('bash -c "cliphist list | rofi -dmenu -p \"  Clipboard\" -theme /home/dogukan/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"'))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
