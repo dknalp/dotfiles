@@ -658,3 +658,53 @@ sudo nano /etc/sddm.conf
 - **`hyprctl eval hl.bind()`** accumulates — it adds binds, doesn't replace. Use `hyprctl reload` after editing `hyprland.lua` instead of eval for permanent changes.
 - **sdegler/hyprland COPR is broken** for Fedora 43 as of Nov 2026 — use ashbuk/Hyprland-Fedora instead.
 - **Brave Flatpak** is at `com.brave.Browser` — the executable is `flatpak run com.brave.Browser`.
+
+---
+
+## Wallpaper Selector Optimizations (Super+F)
+
+**Problem:** Rofi was loading full-res 1920×1080 images as tiny thumbnails — very slow.
+
+**Fix:** Pre-generate 400×225 thumbnails cached to `~/.cache/wallpaper_thumbs/`
+- Uses `magick "$f[0]" -resize 400x225^ -gravity center -extent 400x225 "$thumb"`
+- Cache is checked before generating — subsequent opens are instant
+- GIFs and videos also use ffmpegthumbnailer for fast previews
+
+**Add New button:**
+- First entry in picker: `"  Add New Wallpaper..."`
+- When selected, opens `~/Pictures/wallpapers/` in Thunar
+- Handler in `WallpaperSelect.sh`: checks if choice matches add-new string, runs `thunar "$wallDIR" &`
+
+**Script:** `~/.config/hypr/UserScripts/WallpaperSelect.sh`
+**Thumb cache:** `~/.cache/wallpaper_thumbs/` (auto-generated per wallpaper)
+**To regenerate all thumbs:** delete `~/.cache/wallpaper_thumbs/` and open picker once
+
+---
+
+## Clipboard History (Super+V)
+
+**Theme:** `~/.config/rofi/clipboard.rasi` — Catppuccin Mocha
+- 620px wide, 10 lines, 1 column
+- Dark background, lavender prompt icon (`  Clipboard`), search bar
+- Matches app launcher and cheatsheet exactly
+
+**How it works:**
+1. `cliphist list` — outputs all clipboard history
+2. Piped to `rofi -dmenu` with custom theme
+3. Selected item decoded with `cliphist decode`
+4. Decoded content written to clipboard with `wl-copy`
+5. Then paste anywhere with `Ctrl+V`
+
+**Daemon:** `wl-paste --watch cliphist store` — runs at startup, captures every copy
+
+---
+
+## Git Sync Reminder
+
+Always sync `~/.config/` changes back to `~/dotfiles/` before committing:
+```bash
+cp ~/.config/hypr/hyprland.lua ~/dotfiles/.config/hypr/
+cp ~/.config/hypr/UserScripts/WallpaperSelect.sh ~/dotfiles/.config/hypr/UserScripts/
+cp ~/.config/rofi/clipboard.rasi ~/dotfiles/.config/rofi/
+cd ~/dotfiles && git add -A && git commit -m "update: description" && git push
+```
