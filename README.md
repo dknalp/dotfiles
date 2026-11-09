@@ -58,18 +58,26 @@
 
 ## Install
 
-> **Requires:** Fedora 43 + Hyprland 0.57 already installed (via [JaKooLit's installer](https://github.com/JaKooLit/Fedora-Hyprland))
+> **Requires:** Fedora 43 + Hyprland 0.57 already installed via [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprland)
 
+**One-liner:**
 ```bash
-git clone https://github.com/parsherr/dotfiles.git ~/dotfiles
+bash <(curl -s https://raw.githubusercontent.com/dknalp/dotfiles/main/install.sh)
+```
+
+**Or clone and run:**
+```bash
+git clone https://github.com/dknalp/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
 
 The installer:
-- Backs up your existing `~/.config/{hypr,waybar,rofi,kitty,wallust}` to a timestamped folder
-- Copies configs to the correct locations
-- Optionally installs the SDDM theme (requires sudo)
+- Checks prerequisites (Hyprland, Waybar, Rofi, Kitty, swww, grim)
+- Backs up existing `~/.config/{hypr,waybar,rofi,kitty,wallust}` to a timestamped folder
+- Copies configs to correct locations
+- Optionally installs the SDDM login screen theme
+- Reloads Hyprland automatically if running
 
 ---
 
