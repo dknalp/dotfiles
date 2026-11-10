@@ -1,0 +1,87 @@
+# packages.txt — all packages required by dknalp/dotfiles
+# Install ALL of these before running install.sh or keybinds will silently fail.
+#
+# ── Fedora ───────────────────────────────────────────────────────────────────
+# sudo dnf install hyprland xdg-desktop-portal-hyprland waybar rofi-wayland kitty
+#   grim slurp wl-clipboard brightnessctl playerctl thunar papirus-icon-theme
+#   python3 python3-requests sddm
+#
+# COPR for packages not in main repos (swaync, swww, hyprsunset, hypridle, cliphist):
+#   sudo dnf copr enable solopasha/hyprland-hyprpaper-and-more
+#   sudo dnf install swaync swww hyprsunset hypridle cliphist
+#
+# wallust (color generator):
+#   cargo install wallust  OR  pip install wallust
+#
+# ── Arch / Manjaro ───────────────────────────────────────────────────────────
+# sudo pacman -S hyprland xdg-desktop-portal-hyprland waybar kitty
+#   grim slurp wl-clipboard brightnessctl playerctl thunar papirus-icon-theme
+#   python python-requests sddm
+# yay -S rofi-wayland swww swaync hyprsunset hypridle cliphist wallust-bin
+#
+# ── Ubuntu / Debian ──────────────────────────────────────────────────────────
+# sudo apt install waybar kitty grim slurp wl-clipboard
+#   brightnessctl playerctl thunar papirus-icon-theme python3 python3-requests sddm
+# rofi-wayland, swww, swaync, hyprsunset, hypridle, cliphist, wallust:
+#   build from source or use Flatpak (see links below)
+#
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Window Manager
+hyprland                      # https://hyprland.org  (tested 0.50-0.59, Lua config)
+xdg-desktop-portal-hyprland   # screen sharing / file picker portals
+
+# Status Bar
+waybar
+
+# App Launcher
+rofi-wayland                  # must be the Wayland build, NOT x11 rofi
+
+# Terminal
+kitty
+
+# Wallpaper
+swww                          # https://github.com/LGFae/swww
+
+# Screenshot
+grim
+slurp
+
+# Clipboard
+wl-clipboard                  # provides wl-copy and wl-paste
+cliphist                      # https://github.com/sentriz/cliphist
+
+# Notifications
+swaync                        # https://github.com/ErikReider/SwayNotificationCenter
+
+# Night Light
+hyprsunset                    # https://github.com/hyprwm/hyprsunset
+
+# Idle / Lock
+hypridle                      # https://github.com/hyprwm/hypridle
+
+# Brightness & Media
+brightnessctl
+playerctl
+pamixer                       # volume control used by Volume.sh
+
+# Color Generation
+wallust                       # https://github.com/nicokosi/wallust  (pywal successor)
+
+# Fonts
+# JetBrains Mono Nerd Font — download from https://www.nerdfonts.com/font-downloads
+# Install to ~/.local/share/fonts/ then run: fc-cache -fv
+
+# Icons
+papirus-icon-theme            # Papirus-Dark
+
+# File Manager
+thunar
+
+# Login Screen
+sddm
+# Theme: simple_sddm_2 — install separately, see sddm/ folder
+
+# Python (Weather widget)
+python3
+python3-requests

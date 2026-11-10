@@ -58,28 +58,33 @@
 
 ## Install
 
-> **Requires:** Fedora 43 + Hyprland 0.57 already installed via [JaKooLit's Fedora-Hyprland](https://github.com/JaKooLit/Fedora-Hyprland)
+> **Tested on:** Fedora 43 + Hyprland 0.50-0.59 (Lua config)
+> **Other distros:** Arch and Ubuntu also work. `install.sh` detects your distro and shows the right commands.
 
-**One-liner:**
-```bash
-bash <(curl -s https://raw.githubusercontent.com/dknalp/dotfiles/main/install.sh)
-```
+**Step 1 — Install required packages** (see [`packages.txt`](packages.txt) for the full list)
 
-**Or clone and run:**
+**Step 2 — Clone and run:**
 ```bash
 git clone https://github.com/dknalp/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
 
-The installer:
-- Checks prerequisites (Hyprland, Waybar, Rofi, Kitty, swww, grim)
-- Backs up existing `~/.config/{hypr,waybar,rofi,kitty,wallust}` to a timestamped folder
-- Copies configs to correct locations
-- Optionally installs the SDDM login screen theme
-- Reloads Hyprland automatically if running
+**Or one-liner:**
+```bash
+bash <(curl -s https://raw.githubusercontent.com/dknalp/dotfiles/main/install.sh)
+```
 
----
+The installer:
+- Detects your distro (`/etc/os-release`) and checks Hyprland version
+- Checks all 15 required binaries — prints distro-specific install commands for any missing
+- Backs up existing `~/.config/{hypr,waybar,rofi,kitty,wallust}` to a timestamped folder
+- Copies configs, then runs `wallust` on your first wallpaper to seed colors immediately
+- Warns about `monitors.conf` and how to set your actual resolution (`hyprctl monitors`)
+- Optionally installs the SDDM login theme
+- Reloads Hyprland if it's running
+
+> **Something broken?** See [`ISSUES.md`](ISSUES.md) for a full breakdown of known problems and fixes.
 
 ## Structure
 
@@ -93,7 +98,9 @@ dotfiles/
 │   └── wallust/       # color generation config
 ├── sddm/              # login screen theme.conf
 ├── assets/            # screenshots
-├── install.sh         # installer script
+├── install.sh         # installer (distro detection, version check, prereq check)
+├── packages.txt       # full required package list with per-distro install commands
+├── ISSUES.md          # known setup problems and their fixes
 ├── good-ideas.md      # notes from analyzing pro dotfiles repos
 └── hyprland-setup-notes.md  # full setup journal (660+ lines)
 ```
